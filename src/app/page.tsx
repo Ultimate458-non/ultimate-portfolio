@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   Award,
+  Trophy,
   Brain,
   Check,
   Cloud,
@@ -128,6 +129,49 @@ const PROJECTS: Project[] = [
   },
 ];
 
+const AWARDS = [
+  {
+    place: "1st place",
+    title: "BBD Best Repo",
+    role: "Lead Developer",
+    when: "Hackathon",
+    text: "Led development of the full-stack application that placed first for best repository.",
+    tags: ["Full-stack", "Team lead"],
+  },
+  {
+    place: "Top 3",
+    title: "BizTech Nexus Hackathon",
+    role: "Team Lead",
+    when: "24 hours",
+    text: "Led the team and built BridgeUni, one platform where students find bootcamp and upskilling resources from around the world.",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+  },
+  {
+    place: "Recognised",
+    title: "Standard Bank Beat the Banker",
+    role: "Data model & data science",
+    when: "48 hours",
+    text: "Built CodeRED, a fraud-monitoring demo with a mule-account detection pipeline. Designed the data model used to track scammers and was recognised for the data science contribution.",
+    tags: ["FastAPI", "Streamlit", "SQLite", "Python"],
+  },
+  {
+    place: "Won · China",
+    title: "Huawei Seeds for the Future",
+    role: "Group presenter & assistant leader",
+    when: "2023 – 2024",
+    text: "Our team won a trip to China to compete internationally. We pitched Communication for All, the Innovoice Translate System: a camera-based wearable concept that uses computer vision, machine learning and NLP to turn sign language into spoken South African languages. I presented the project and served as assistant team leader.",
+    tags: ["Computer vision", "Machine learning", "NLP", "Python"],
+  },
+  {
+    place: "Final round",
+    title: "Amazon · Code Your Career, Cape Town",
+    role: "Software Engineer interview process",
+    when: "Aug 2026",
+    text: "Earned an interview opportunity for a Software Engineer role at Amazon's Code Your Career event in Cape Town and advanced through to the final interview round.",
+    tags: ["Amazon", "Software Engineering"],
+  },
+];
+
 const STACK = [
   {
     title: "Backend",
@@ -222,7 +266,7 @@ const CERTS = [
   {
     title: "Seeds for the Future",
     issuer: "Huawei · Alumna",
-    detail: "2023 – 2024",
+    detail: "Won a trip to China · 2023 – 2024",
     badge: "huawei",
   },
   {
@@ -370,6 +414,7 @@ function BadgeGraphic({ kind }: { kind: string }) {
 function Nav() {
   const links = [
     ["Projects", "#projects"],
+    ["Awards", "#awards"],
     ["Stack", "#stack"],
     ["Experience", "#experience"],
     ["Credentials", "#credentials"],
@@ -571,6 +616,36 @@ function Projects() {
   );
 }
 
+function Awards() {
+  return (
+    <Section id="awards" eyebrow="Hackathons & recognition" title="Built under pressure, recognised for it">
+      <div className="grid gap-4 sm:grid-cols-2">
+        {AWARDS.map((a) => (
+          <div
+            key={a.title}
+            className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-cyan-400/30"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500/20 to-cyan-500/20 px-3 py-1 text-xs font-semibold text-cyan-200">
+                <Trophy className="h-3.5 w-3.5" /> {a.place}
+              </span>
+              <span className="text-xs text-slate-500">{a.when}</span>
+            </div>
+            <h3 className="mt-4 text-lg font-semibold text-white">{a.title}</h3>
+            <p className="text-sm text-cyan-300">{a.role}</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-300">{a.text}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {a.tags.map((t) => (
+                <Pill key={t}>{t}</Pill>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 function StackGrid() {
   return (
     <Section id="stack" eyebrow="System architecture" title="Stack & Tooling">
@@ -727,7 +802,7 @@ function Footer() {
   return (
     <footer className="border-t border-white/5 py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-sm text-slate-500 sm:flex-row sm:px-8">
-        <p>© 2026 {PROFILE.name}</p>
+        <p>© {new Date().getFullYear()} {PROFILE.name}</p>
         <div className="flex items-center gap-4">
           <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-white">
             <LinkedinIcon className="h-5 w-5" />
@@ -753,6 +828,7 @@ export default function Page() {
       <Nav />
       <Hero />
       <Projects />
+      <Awards />
       <StackGrid />
       <Experience />
       <Credentials />
