@@ -802,7 +802,7 @@ function Footer() {
   return (
     <footer className="border-t border-white/5 py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-sm text-slate-500 sm:flex-row sm:px-8">
-        <p>© {new Date().getFullYear()} {PROFILE.name}</p>
+        <p>© 2026 {PROFILE.name}</p>
         <div className="flex items-center gap-4">
           <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-white">
             <LinkedinIcon className="h-5 w-5" />
