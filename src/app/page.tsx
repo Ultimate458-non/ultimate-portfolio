@@ -376,12 +376,21 @@ function BadgeGraphic({ kind }: { kind: string }) {
     aws: { src: "/badges/aws-ai-practitioner.png", alt: "AWS Skills Center AI Practitioner: Foundations training badge", pad: "p-0.5" },
     huawei: { src: "https://cdn.simpleicons.org/huawei/CF0A2C", alt: "Huawei", pad: "p-3" },
     cisco: { src: "https://cdn.simpleicons.org/cisco/1BA0D7", alt: "Cisco", pad: "p-3" },
-    li: { src: "https://cdn.simpleicons.org/linkedin/0A66C2", alt: "LinkedIn Learning", pad: "p-3" },
   };
   const text: Record<string, { bg: string; label: string }> = {
     golden: { bg: "from-amber-400 to-yellow-600", label: "GK" },
     lead: { bg: "from-violet-600 to-purple-900", label: "L50" },
   };
+  if (kind === "li") {
+    return (
+      <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white shadow-lg ring-1 ring-white/20">
+        <LinkedinIcon className="h-9 w-9 text-[#0A66C2]" />
+        <span className="absolute -bottom-1 -right-1 rounded-full bg-slate-950 p-0.5">
+          <Check className="h-3.5 w-3.5 text-emerald-400" />
+        </span>
+      </div>
+    );
+  }
   const img = images[kind];
   if (img) {
     return (
